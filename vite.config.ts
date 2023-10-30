@@ -1,6 +1,5 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
-import http from 'https';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode, ssrBuild }) => {
@@ -36,7 +35,8 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 					'/api': {
 						target: 'https://squid-app-trpsn.ondigitalocean.app/',
 						changeOrigin: true,
-						agent: new http.Agent(),
+						secure: false,
+						ws: true,
 					},
 				},
 			},
