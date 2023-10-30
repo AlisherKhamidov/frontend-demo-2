@@ -34,7 +34,7 @@ export default defineConfig(({ command, mode, ssrBuild }) => {
 				open: true,
 				proxy: {
 					'/api': {
-						target: '/',
+						target: 'https://squid-app-trpsn.ondigitalocean.app/',
 					},
 				},
 			},
