@@ -2,7 +2,7 @@ import Credentials from './types/Credentials';
 import RegisterData from './types/RegisterData';
 import User from './types/User';
 
-const BASE_URL: string = import.meta.env.PRODUCTION_SERVER || '';
+const BASE_URL: string = import.meta.env.VITE_PRODUCTION_SERVER || '';
 
 export async function user(): Promise<{
 	id: number;
