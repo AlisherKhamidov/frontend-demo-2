@@ -38,6 +38,8 @@ function Login(): JSX.Element {
 
 	const handleNameChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
+			console.log('***');
+			console.log(import.meta.env.PRODUCTION_SERVER);
 			setName(event.target.value);
 			// 332 очищаем ошибку
 			dispatch(resetLoginFormError());
