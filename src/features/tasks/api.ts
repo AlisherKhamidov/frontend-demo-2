@@ -2,8 +2,10 @@ import Task, { TaskId } from './types/Task';
 // все запросы на сервер касательно тасков объединены в этом файлике
 // в остальной программе, мы будем делать запросы только опосредованно через api
 // запрос на создание таска
+const BASE_URL: string = import.meta.env.VITE_PRODUCTION_SERVER || '';
+
 export async function createTask(name: string, description: string): Promise<Task> {
-	const res = await fetch('/api/tasks', {
+	const res = await fetch(`${BASE_URL}/api/tasks`, {
 		method: 'POST',
 		body: JSON.stringify({ name, description }),
 		headers: {
@@ -27,7 +29,7 @@ export async function createTask(name: string, description: string): Promise<Tas
 }
 // пример запроса на обновление таска
 export async function updateTask(task: Task): Promise<void> {
-	await fetch(`/api/tasks/${task.id}`, {
+	await fetch(`${BASE_URL}/api/tasks/${task.id}`, {
 		method: 'PUT',
 		body: JSON.stringify(task),
 		headers: {
@@ -37,19 +39,19 @@ export async function updateTask(task: Task): Promise<void> {
 }
 // на удаление права только у админа
 export async function deleteTask(id: TaskId): Promise<void> {
-	await fetch(`/api/tasks/${id}`, {
+	await fetch(`${BASE_URL}/api/tasks/${id}`, {
 		method: 'DELETE',
 	});
 }
 
 // доступ у юзера - таски текущего пользователя
 export async function getTasks(): Promise<{ tasks: Task[] }> {
-	const result = await fetch('/api/users/my/tasks');
+	const result = await fetch(`${BASE_URL}/api/users/my/tasks`);
 	return result.json();
 }
 
 // доступ только у админа - получение с сервера всех задач всех пользователей
 export async function getTasksOfAll(): Promise<{ tasks: Task[] }> {
-	const result = await fetch('/api/tasks');
+	const result = await fetch(`${BASE_URL}/api/tasks`);
 	return result.json();
 }
