@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectLoginFormError } from './selectors';
 import { getUser, login, resetLoginFormError } from './authSlice';
 
+const BASE_URL: string = import.meta.env.VITE_PRODUCTION_SERVER || '';
+
 function Login(): JSX.Element {
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -39,7 +41,7 @@ function Login(): JSX.Element {
 	const handleNameChange = useCallback(
 		(event: React.ChangeEvent<HTMLInputElement>) => {
 			console.log('***');
-			console.log(import.meta.env.PRODUCTION_SERVER);
+			console.log(BASE_URL);
 			setName(event.target.value);
 			// 332 очищаем ошибку
 			dispatch(resetLoginFormError());
