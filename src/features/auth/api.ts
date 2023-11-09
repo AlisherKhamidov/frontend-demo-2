@@ -11,6 +11,7 @@ export async function user(): Promise<{
 }> {
 	const res = await fetch(`${BASE_URL}/api/users/my/profile`, {
 		method: 'GET',
+		mode: 'cors',
 		credentials: 'include',
 	});
 	if (res.status >= 400) {
@@ -23,6 +24,7 @@ export async function user(): Promise<{
 export async function login(credentials: Credentials): Promise<User> {
 	const res = await fetch(`${BASE_URL}/api/login`, {
 		method: 'POST',
+		mode: 'cors',
 		credentials: 'include',
 		body: `username=${credentials.email}&password=${credentials.password}`,
 		headers: {
@@ -42,6 +44,7 @@ export async function register(data: RegisterData): Promise<{ id: number; email:
 	const res = await fetch(`${BASE_URL}/api/register`, {
 		method: 'POST',
 		body: JSON.stringify(data),
+		mode: 'cors',
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -63,5 +66,6 @@ export async function register(data: RegisterData): Promise<{ id: number; email:
 export async function logout(): Promise<void> {
 	await fetch(`${BASE_URL}/api/logout`, {
 		method: 'PUT',
+		mode: 'cors',
 	});
 }
