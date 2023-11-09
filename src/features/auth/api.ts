@@ -9,7 +9,10 @@ export async function user(): Promise<{
 	email: string;
 	role: string;
 }> {
-	const res = await fetch(`${BASE_URL}/api/users/my/profile`);
+	const res = await fetch(`${BASE_URL}/api/users/my/profile`, {
+		method: 'GET',
+		credentials: 'include',
+	});
 	if (res.status >= 400) {
 		const { message }: { message: string } = await res.json();
 		throw new Error(message);
