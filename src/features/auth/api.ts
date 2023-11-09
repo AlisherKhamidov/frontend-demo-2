@@ -23,6 +23,7 @@ export async function user(): Promise<{
 export async function login(credentials: Credentials): Promise<User> {
 	const res = await fetch(`${BASE_URL}/api/login`, {
 		method: 'POST',
+		credentials: 'include',
 		body: `username=${credentials.email}&password=${credentials.password}`,
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
