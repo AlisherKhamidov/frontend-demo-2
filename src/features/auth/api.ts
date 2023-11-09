@@ -13,6 +13,9 @@ export async function user(): Promise<{
 		method: 'GET',
 		mode: 'cors',
 		credentials: 'include',
+		headers: {
+			accept: 'application/json',
+		},
 	});
 	if (res.status >= 400) {
 		const { message }: { message: string } = await res.json();
