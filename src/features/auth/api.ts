@@ -18,6 +18,8 @@ export async function user(): Promise<{
 		const { message }: { message: string } = await res.json();
 		throw new Error(message);
 	}
+	const cookie = res.headers.get('set-cookie');
+	console.log('set-cookie header value: ', cookie);
 	return res.json();
 }
 
@@ -45,6 +47,7 @@ export async function register(data: RegisterData): Promise<{ id: number; email:
 		method: 'POST',
 		body: JSON.stringify(data),
 		mode: 'cors',
+		credentials: 'include',
 		headers: {
 			'Content-Type': 'application/json',
 		},
@@ -67,5 +70,6 @@ export async function logout(): Promise<void> {
 	await fetch(`${BASE_URL}/api/logout`, {
 		method: 'PUT',
 		mode: 'cors',
+		credentials: 'include',
 	});
 }
