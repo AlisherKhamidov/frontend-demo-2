@@ -18,6 +18,9 @@ export async function user(): Promise<{
 		const { message }: { message: string } = await res.json();
 		throw new Error(message);
 	}
+	res.headers.forEach((value, key) => {
+		console.log(key, value);
+	});
 	const cookie = res.headers.get('set-cookie');
 	console.log('set-cookie header value: ', cookie);
 	return res.json();
